@@ -1,0 +1,34 @@
+package books
+
+import (
+	"context"
+	"database/sql"
+)
+
+type Service struct {
+	DB *sql.DB
+}
+
+func NewService(db *sql.DB) *Service {
+	return &Service{DB: db}
+}
+
+func (s *Service) GetAllBooks(ctx context.Context) ([]Book, error) {
+	rows, err := s.DB.QueryContext(ctx, "SELECT id, title, author, isbn, pages FROM books")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var books []Book
+	for rows.Next() {
+		var b Book
+		if err := rows.Scan(&b.ID, &b.Title, &b.Author, &b.ISBN, &b.Pages); err != nil {
+			return nil, err
+		}
+		books = append(books, b)
+	}
+	return books, nil
+}
+
+// Add more methods like GetByID, CreateBook, etc.

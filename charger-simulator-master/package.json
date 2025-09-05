@@ -1,0 +1,38 @@
+{
+  "name": "charger-simulator",
+  "version": "1.0.3",
+  "main": "dist/index.js",
+  "bin": {
+    "charger-simulator": "cli-index.js"
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "ts-node src/chargerSimulatorCli.ts",
+    "prepublishOnly": "tsc",
+    "build": "tsc",
+    "docs": "typedoc --out docs ./src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "16",
+    "prettier": "^3.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "repository": "https://github.com/vasyas/charger-simulator.git",
+  "author": "Vasyl Stashuk <vasyl@stashuk.com>",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@push-rpc/core": "^1.8.3",
+    "@push-rpc/websocket": "^1.8.3",
+    "@types/ws": "^8.5.10",
+    "charger-simulator": "vasyas/charger-simulator",
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.0",
+    "strong-soap": "1.21.0",
+    "ws": "^8.16.0",
+    "xml2js": "^0.4.23"
+  }
+}
